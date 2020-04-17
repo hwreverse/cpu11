@@ -139,11 +139,11 @@ begin
    if (c1) m_in <= m_in_c4;
    if (c2) m_in <= 1'b0;
 
-   if (c4) mo_fa_c4 <= ~dmi[8] & ~pin_wi;
+   if (c4) mo_fa_c4 <= dmi[8] & ~pin_wi;
    if (c1) mo_fa <= mo_fa_c4;
    if (c2) mo_fa <= 1'b0;
 
-   if (c4) mo_ad_c4 <= (dir[4] | dir[5]) & ~dmi[7] & ~pin_wi;
+   if (c4) mo_ad_c4 <= (dir[4] | dir[5]) & dmi[7] & ~pin_wi;
    if (c1) mo_ad <= mo_ad_c4;
    if (c2) mo_ad <= 1'b0;
 end
@@ -260,8 +260,8 @@ begin
    begin
       fag[2:0] <= fa[2:0];
       wr_g0 <= ~pin_wi & dmi[9];
-      wr_g1 <= ~pin_wi & ~dmi[7] &  dir[4] & ~dir[5];
-      wr_g2 <= ~pin_wi & ~dmi[7] & ~dir[4] &  dir[5];
+      wr_g1 <= ~pin_wi & dmi[7] &  dir[4] & ~dir[5];
+      wr_g2 <= ~pin_wi & dmi[7] & ~dir[4] &  dir[5];
    end
 end
 

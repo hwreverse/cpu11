@@ -208,7 +208,7 @@ end
 // Microinstruction decoder
 //
 always @(*) if (c3) plm_c3 <= plm;
-always @(*) if (c4) plmq_c4 <= ~sr_c4 & ~m16_out;
+always @(*) if (c4) plmq_c4 <= ~sr_c4 & m16_out;
 assign plmq = c2 & plmq_c4;
 
 mcp_plc plc
@@ -301,8 +301,8 @@ begin
 
    ldja_c4  <= ~sr_c4 & (plm_c3[1] | plm_c3[2] & pin_m_n[15]); // load jump condition
    ldjb_c4  <= ~sr_c4 &  plm_c3[1];                            // from m[15] on c4
-   ldlca_c4 <=  sr_c4 | ~ldja_c4 & ~m16_out & ~plm_c3[3];
-   ldlcb_c4 <=  sr_c4 | ~ldjb_c4 & ~m16_out & ~plm_c3[3];
+   ldlca_c4 <=  sr_c4 | ~ldja_c4 & m16_out & ~plm_c3[3];
+   ldlcb_c4 <=  sr_c4 | ~ldjb_c4 & m16_out & ~plm_c3[3];
 
    ldtr_c4  <= ~sr_c4 & ~plm_c3[6] & (~plm_c3[8] | ~mir[4] & ~mir[5]);
    ctsr_c4  <= ~sr_c4 & plm_c3[14];
